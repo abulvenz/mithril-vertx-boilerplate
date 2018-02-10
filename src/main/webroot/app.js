@@ -18664,9 +18664,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mincomponents__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fn__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dragdrop__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chart_js__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_chart_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__editor__ = __webpack_require__(187);
 
 
 
@@ -18690,56 +18688,6 @@ const mAuth = new __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* default */]
 
 
 
-
-console.log('Chart', __WEBPACK_IMPORTED_MODULE_8_chart_js___default.a)
-
-class ChartNode {
-  oncreate(vnode) {
-    var myChart = new __WEBPACK_IMPORTED_MODULE_8_chart_js___default.a(vnode.dom.getContext('2d'), {
-      type: 'bar',
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-  }
-  view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('canvas', {
-      width: 500,
-      height: 400
-    });
-  }
-}
-
 class Page1 {
   view(vnode) {
     return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'page1'))
@@ -18752,202 +18700,7 @@ class Page2 {
   }
 }
 
-const getParam = (vnode, param) => vnode.attrs[param] ? vnode.attrs[param] : param;
 
-const components = __WEBPACK_IMPORTED_MODULE_6__fn__["a" /* default */].flatten([{
-  name: 'container',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
-}, {
-  name: 'div',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
-}, {
-  name: 'row',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
-}, __WEBPACK_IMPORTED_MODULE_6__fn__["a" /* default */].interval(1, 12).map(colWidth => {
-  return {
-    name: 'c' + colWidth,
-    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c' + colWidth, __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)),
-  }
-}), ['a', 'b', 'c'].map(c => {
-  return {
-    name: 'button ' + c,
-    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('a.btn.btn-sm.btn-' + c, 'click'),
-  }
-}), {
-  name: 'row4-8',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c4', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c8', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot))),
-}, {
-  name: 'row6-6',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot))),
-},{
-  name:'img',
-  view: vnode=> __WEBPACK_IMPORTED_MODULE_0_mithril___default()('img',{width:'100%',src:'http://via.placeholder.com/350x150'})
-}, {
-  name: 'input',
-  view: vnode => [
-    __WEBPACK_IMPORTED_MODULE_0_mithril___default()("span.addon",
-      "$"
-    ),
-    __WEBPACK_IMPORTED_MODULE_0_mithril___default()("input.smooth[type='text']")
-  ]
-}, {
-  name: 'h1',
-  parameters: () => [{
-    name: 'text'
-  }],
-  view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', getParam(vnode, 'text'))
-}, {
-  name: 'alert',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.msg', 'click'),
-}, {
-  name: 'chart',
-  view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(ChartNode),
-}]);
-
-const byName = (arr, name) => {
-  return __WEBPACK_IMPORTED_MODULE_5__utils__["a" /* default */].first(arr.filter(c => c.name === name));
-}
-
-let exampleComponent = () => {
-  return {
-    name: 'heading',
-    properties: [{
-      name: 'text'
-    }],
-    render: {
-      view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'rendered'),
-    },
-    edit: {
-      view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('input', {
-        placeHolder: 'enter $text'
-      })
-    },
-    design: {
-      view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', '$text')
-    }
-  }
-};
-
-class TemplateLeaf {
-  constructor({
-    children = [],
-    parent = null,
-    properties = [],
-    component = {
-      name: 'template',
-      design: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList),
-      view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('', 'rendered'),
-      edit: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('', 'fill in your text here')
-    }
-  }) {
-    this.children = children;
-    this.parent = parent;
-    this.properties = properties;
-    this.component = component;
-    this.traverse(node =>
-      node.children.forEach(child => child.parent = node));
-  }
-  listProperties() {
-    return this.properties;
-  }
-  mapChildren(fn) {
-    return this.children.map(fn);
-  }
-  filterChildren(fn) {
-    return this.children.filter(fn);
-  }
-  traverse(fn) {
-    fn(this)
-    this.children.forEach(child => child.traverse(fn));
-  }
-  component() {
-    return this.component;
-  }
-}
-
-let templateRoot = new TemplateLeaf({
-  children: [new TemplateLeaf({
-    component: byName(components, 'h1')
-  })]
-});
-
-templateRoot.traverse(r => {
-  delete r.parent;
-});
-
-console.log(JSON.stringify(templateRoot))
-
-class Draggable {
-  view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.drag-drop.draggable',
-      __WEBPACK_IMPORTED_MODULE_7__dragdrop__["a" /* default */].drag(vnode.attrs.component.name),
-      vnode.attrs.component.name)
-  }
-}
-
-class Dropzone {
-  concreate(vnode) {
-    this.comp = null;
-  }
-  view(vnode) {
-    return this.comp ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()(this.comp) : __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.dropzone', __WEBPACK_IMPORTED_MODULE_7__dragdrop__["a" /* default */].drop({
-      dropped: cname => this.comp = byName(components, cname)
-    }), '+');
-  }
-}
-
-class Slot {
-  constructor(vnode) {
-    this.comp = null;
-  }
-  view(vnode) {
-    return this.comp ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()(this.comp) : __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.dropzone', __WEBPACK_IMPORTED_MODULE_7__dragdrop__["a" /* default */].drop({
-      dropped: cname => this.comp = byName(components, cname)
-    }), '+');
-  }
-}
-
-class SlotList {
-  constructor(vnode) {
-    this.comp = [];
-  }
-  view(vnode) {
-    return [this.comp.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()('div.dropzone',
-        __WEBPACK_IMPORTED_MODULE_7__dragdrop__["a" /* default */].drop({
-          dropped: cname => this.comp.unshift(byName(components, cname))
-        }), '<') : null,
-      this.comp.map(c => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(c, {
-        component: c
-      }, c.name)),
-      __WEBPACK_IMPORTED_MODULE_0_mithril___default()('div.dropzone', __WEBPACK_IMPORTED_MODULE_7__dragdrop__["a" /* default */].drop({
-        dropped: cname => this.comp.push(byName(components, cname))
-      }), '>')
-    ];
-  }
-}
-
-class Editor {
-  constructor(vnode) {
-    this.rcomponents = [];
-  }
-  view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container',
-      __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row',
-        __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c3.dark', 'Library', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('hr'),
-          components.map(component => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Draggable, {
-            component: component
-          }, component.name))),
-        __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c9.light', 'DesignZones', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('hr'),
-          __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Dropzone, {}),
-          // m(SlotList,   {
-          //   append: c => rcomponents.push(c),
-          //   prepend: c => rcomponents.unshift(c)
-          // }, this.rcomponents.map(rc => m(rc))),
-          //   m(Slot,   {})
-        )
-      ))
-  }
-}
 
 var links = [{
   text: 'BuildStuff',
@@ -18972,7 +18725,7 @@ var links = [{
   text: 'Editor',
   link: '/editor',
   component: {
-    render: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Editor)
+    render: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(__WEBPACK_IMPORTED_MODULE_7__editor__["a" /* default */])
   }
 }];
 
@@ -35498,6 +35251,264 @@ let dropzoneMixin = (options) => {
   drag: draggableMixin,
   drop: dropzoneMixin
 });
+
+/***/ }),
+/* 187 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mithril__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fn__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dragdrop__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_chart_js__);
+
+
+
+
+
+
+const getParam = (vnode, param) => vnode.attrs[param] ? vnode.attrs[param] : param;
+
+
+
+
+console.log('Chart', __WEBPACK_IMPORTED_MODULE_4_chart_js___default.a)
+
+class ChartNode {
+    oncreate(vnode) {
+        var myChart = new __WEBPACK_IMPORTED_MODULE_4_chart_js___default.a(vnode.dom.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    view(vnode) {
+        return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('canvas', {
+            width: 500,
+            height: 400
+        });
+    }
+}
+
+class ModalContent {
+    view(vnode) {
+        return [vnode.attrs.header ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.light-modal-header', vnode.attrs.header) : null,
+            __WEBPACK_IMPORTED_MODULE_0_mithril___default()(".light-modal-body", vnode.children),
+            vnode.attrs.footer ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.light-modal-footer', vnode.attrs.header) : null
+        ];
+    }
+}
+
+class Modal {
+    oncreate(vnode) {
+        this.id = vnode.attrs.id || Math.random() * 65535;
+    }
+    view(vnode) {
+        return [
+            __WEBPACK_IMPORTED_MODULE_0_mithril___default()(".light-modal[aria-hidden='false'][aria-labelledby='light-modal-label'][id='" + this.id + "'][role='dialog']",
+                __WEBPACK_IMPORTED_MODULE_0_mithril___default()(".light-modal-content.animated.zoomInUp", [
+                    __WEBPACK_IMPORTED_MODULE_0_mithril___default()("a.light-modal-close-icon[aria-label='close'][href='#']",
+                        __WEBPACK_IMPORTED_MODULE_0_mithril___default.a.trust("&times;")
+                    ),
+                    vnode.children
+                ])
+            ), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('a.btn.btn-a', {
+                href: '#' + this.id
+            }, 'Open modal')
+        ]
+    }
+}
+
+
+const components = __WEBPACK_IMPORTED_MODULE_1__fn__["a" /* default */].flatten([{
+    name: 'container',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
+}, {
+    name: 'div',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
+}, {
+    name: 'row',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(SlotList))
+}, __WEBPACK_IMPORTED_MODULE_1__fn__["a" /* default */].interval(1, 12).map(colWidth => {
+    return {
+        name: 'c' + colWidth,
+        view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c' + colWidth, __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)),
+    }
+}), ['a', 'b', 'c'].map(c => {
+    return {
+        name: 'button ' + c,
+        view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('a.btn.btn-sm.btn-' + c, 'click'),
+    }
+}), {
+    name: 'row4-8',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c4', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c8', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot))),
+}, {
+    name: 'row6-6',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot))),
+}, {
+    name: 'img',
+    view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('img', {
+        width: '100%',
+        src: 'http://via.placeholder.com/350x150'
+    })
+}, {
+    name: 'input',
+    view: vnode => [
+        __WEBPACK_IMPORTED_MODULE_0_mithril___default()("span.addon",
+            "$"
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_mithril___default()("input.smooth[type='text']")
+    ]
+}, {
+    name: 'h1',
+    parameters: () => [{
+        name: 'text'
+    }],
+    view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', getParam(vnode, 'text'))
+}, {
+    name: 'alert',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.msg', 'click'),
+}, {
+    name: 'chart',
+    view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(ChartNode),
+}, {
+    name: 'modal',
+    view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Modal, __WEBPACK_IMPORTED_MODULE_0_mithril___default()(ModalContent, {
+        header: __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'text')
+    }, __WEBPACK_IMPORTED_MODULE_0_mithril___default()(byName(components, 'img'))))
+}]);
+
+const byName = (arr, name) => {
+    return __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].first(arr.filter(c => c.name === name));
+}
+
+let exampleComponent = () => {
+    return {
+        name: 'heading',
+        properties: [{
+            name: 'text'
+        }],
+        render: {
+            view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'rendered'),
+        },
+        edit: {
+            view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('input', {
+                placeHolder: 'enter $text'
+            })
+        },
+        design: {
+            view: vnode => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', '$text')
+        }
+    }
+};
+
+class Draggable {
+    view(vnode) {
+        return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.drag-drop.draggable',
+            __WEBPACK_IMPORTED_MODULE_2__dragdrop__["a" /* default */].drag(vnode.attrs.component.name),
+            vnode.attrs.component.name)
+    }
+}
+
+class Dropzone {
+    concreate(vnode) {
+        this.comp = null;
+    }
+    view(vnode) {
+        return this.comp ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()(this.comp) : __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.dropzone', __WEBPACK_IMPORTED_MODULE_2__dragdrop__["a" /* default */].drop({
+            dropped: cname => this.comp = byName(components, cname)
+        }), '+');
+    }
+}
+
+class Slot {
+    constructor(vnode) {
+        this.comp = null;
+    }
+    view(vnode) {
+        return this.comp ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()(this.comp) : __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.dropzone', __WEBPACK_IMPORTED_MODULE_2__dragdrop__["a" /* default */].drop({
+            dropped: cname => this.comp = byName(components, cname)
+        }), '+');
+    }
+}
+
+class SlotList {
+    constructor(vnode) {
+        this.comp = [];
+    }
+    view(vnode) {
+        return [this.comp.length > 0 ? __WEBPACK_IMPORTED_MODULE_0_mithril___default()('div.dropzone',
+                __WEBPACK_IMPORTED_MODULE_2__dragdrop__["a" /* default */].drop({
+                    dropped: cname => this.comp.unshift(byName(components, cname))
+                }), '<') : null,
+            this.comp.map(c => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(c, {
+                component: c
+            }, c.name)),
+            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('div.dropzone', __WEBPACK_IMPORTED_MODULE_2__dragdrop__["a" /* default */].drop({
+                dropped: cname => this.comp.push(byName(components, cname))
+            }), '>')
+        ];
+    }
+}
+
+class Editor {
+    constructor(vnode) {
+        this.rcomponents = [];
+    }
+    view(vnode) {
+        return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container',
+            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row',
+                __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c3.dark', 'Library', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('hr'),
+                    components.map(component => __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Draggable, {
+                        component: component
+                    }, component.name))),
+                __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c9.light', 'DesignZones', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('hr'),
+                    __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Dropzone, {}),
+                    // m(SlotList,   {
+                    //   append: c => rcomponents.push(c),
+                    //   prepend: c => rcomponents.unshift(c)
+                    // }, this.rcomponents.map(rc => m(rc))),
+                    //   m(Slot,   {})
+                )
+            ))
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Editor;
+
 
 /***/ })
 /******/ ]);
