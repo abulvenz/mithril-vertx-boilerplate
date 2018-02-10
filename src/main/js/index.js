@@ -9,8 +9,6 @@ import utils from './utils';
 import fn from './fn';
 
 import DragDrop from './dragdrop';
-
-
 import m from 'mithril';
 
 import fn from './fn';
@@ -112,6 +110,9 @@ const components = fn.flatten([{
 }, {
   name: 'row6-6',
   view: (vnode) => m('.row', m('.col.c6', m(Slot)), m('.col.c6', m(Slot))),
+},{
+  name:'img',
+  view: vnode=> m('img',{width:'100%',src:'http://via.placeholder.com/350x150'})
 }, {
   name: 'input',
   view: vnode => [
@@ -189,6 +190,9 @@ class TemplateLeaf {
   traverse(fn) {
     fn(this)
     this.children.forEach(child => child.traverse(fn));
+  }
+  component() {
+    return this.component;
   }
 }
 
@@ -347,7 +351,7 @@ class Router {
 
 class Login {
   view(vnode) {
-    return m('.container', m('.hero', m('h1', 'Who are you?')), m('.row', m('.col.c3'), m('.col.c6', [
+    return m('.container', m('.hero', m('h1', 'Who are you?')), m('.row', m('.col.c3',' '), m('.col.c12', [
       m('.row', m('.col.c12', m('label.label', 'Username'))),
       m('.row', m('.col.c12', m("input.smooth[autofocus=''][id='email'][name='username'][placeholder='you@example.com'][required=''][type='text']", {
         onkeyup: e => mAuth.setUsername(e.target.value),

@@ -18682,8 +18682,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-
 let log = (...msg) => {
   console.log(...msg);
 };
@@ -18781,6 +18779,9 @@ const components = __WEBPACK_IMPORTED_MODULE_6__fn__["a" /* default */].flatten(
 }, {
   name: 'row6-6',
   view: (vnode) => __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot)), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', __WEBPACK_IMPORTED_MODULE_0_mithril___default()(Slot))),
+},{
+  name:'img',
+  view: vnode=> __WEBPACK_IMPORTED_MODULE_0_mithril___default()('img',{width:'100%',src:'http://via.placeholder.com/350x150'})
 }, {
   name: 'input',
   view: vnode => [
@@ -18858,6 +18859,9 @@ class TemplateLeaf {
   traverse(fn) {
     fn(this)
     this.children.forEach(child => child.traverse(fn));
+  }
+  component() {
+    return this.component;
   }
 }
 
@@ -19016,7 +19020,7 @@ class Router {
 
 class Login {
   view(vnode) {
-    return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.hero', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'Who are you?')), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c3'), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c6', [
+    return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.hero', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'Who are you?')), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c3',' '), __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c12', [
       __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c12', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('label.label', 'Username'))),
       __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.row', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.col.c12', __WEBPACK_IMPORTED_MODULE_0_mithril___default()("input.smooth[autofocus=''][id='email'][name='username'][placeholder='you@example.com'][required=''][type='text']", {
         onkeyup: e => mAuth.setUsername(e.target.value),
@@ -35443,8 +35447,12 @@ const first = arr => arr[0];
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+var dragging = false;
+
+const retrieveHidden = () => dragging ? '' : 'display:none;';
+
 let log = (...msg) => {
-  //console.log(...msg);
+  console.log(...msg);
 };
 
 let draggableMixin = (data, options = {}) => {
@@ -35452,11 +35460,15 @@ let draggableMixin = (data, options = {}) => {
     draggable: true,
     ondragstart: e => {
       log(e);
-      e.dataTransfer.setData('text', data)
-      e.target.style.opacity = "0.6"
+      e.dataTransfer.setData('text', data);
+      e.target.style.opacity = "0.6";
+      dragging = true;
     },
+    onmouseenter: e => dragging = true,
+    onmouseleave: e => dragging = false,
     ondragend: e => {
       log(e);
+      dragging = false;
       e.target.style.opacity = "1.0"
     }
   }, options);
@@ -35464,6 +35476,7 @@ let draggableMixin = (data, options = {}) => {
 
 let dropzoneMixin = (options) => {
   let res = Object.assign({
+    style: retrieveHidden() + (options.style ? options.style : ''),
     ondragover: e => {
       e.preventDefault();
       log('dragover', e);
@@ -35485,7 +35498,6 @@ let dropzoneMixin = (options) => {
   drag: draggableMixin,
   drop: dropzoneMixin
 });
-
 
 /***/ })
 /******/ ]);
