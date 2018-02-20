@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.auth.AuthProvider;
 import io.vertx.ext.auth.User;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,10 +20,13 @@ public class CustomAuthProvider implements AuthProvider {
      * This initialization is the only java 9 stuff in this code. If you need 8,
      * just transform this.
      */
-    Map<String, CustomUser> users = Map.of(
-            "iceman", new CustomUser("abc"),
-            "karl", new CustomUser("bcd")
-    );
+    Map<String, CustomUser> users;
+
+    {
+        users = new HashMap<>();
+        users.put("iceman", new CustomUser("abc"));
+        users.put("karl", new CustomUser("bcd"));
+    }
 
     public JsonArray getUsers() {
         JsonArray result = new JsonArray();

@@ -12,14 +12,13 @@ import m from 'mithril';
 
 import fn from './fn';
 import Editor from './editor';
+import ComponentEditor from './comp-editor';
 
 let log = (...msg) => {
   console.log(...msg);
 };
 
 const mAuth = new Auth.Auth();
-
-
 
 class Page1 {
   view(vnode) {
@@ -32,8 +31,6 @@ class Page2 {
     return m('.container', m('h1', 'page2'))
   }
 }
-
-
 
 var links = [{
   text: 'BuildStuff',
@@ -59,6 +56,12 @@ var links = [{
   link: '/editor',
   component: {
     render: vnode => m(Editor)
+  }
+}, {
+  text: 'CEditor',
+  link: '/ceditor',
+  component: {
+    render: vnode => m(ComponentEditor)
   }
 }];
 

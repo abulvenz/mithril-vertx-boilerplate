@@ -34,12 +34,6 @@ public class MainVerticle extends AbstractVerticle {
 
         MongoClient database = createDatabaseConnection();
 
-//        router.route().handler(ctx -> {
-//            System.err.println("###################################");
-//            System.err.println("ROUTE PATH " + ctx.request().path()
-//                    + " METHOD " + ctx.request().method());
-//            ctx.next();
-//        });
         router.route().handler(CookieHandler.create());
         router.route().handler(BodyHandler.create());
         router.route().handler(SessionHandler.create(LocalSessionStore.create(vertx)));
@@ -71,7 +65,6 @@ public class MainVerticle extends AbstractVerticle {
 
         router.get("/").handler(sendHomepage());
 
-        // Serve the non private static pages
         router.route().handler(CustomStaticRouteHandler
                 .create(WEBROOT)
                 .setCachingEnabled(false)
